@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Recipes App</title>
+        <link href="/images/favicon.png" rel="icon">
+        <link href="/styles/styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <h1 class="header__title">Recipes App</h1>
+                <h2 class="header__subtitle">Save this recipe for later</h2>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="actions__container actions__container--spaced">
+                <a href = "/index.html">Home</a>
+                <span id = "time-stamp"></span>
+            </div>
+        </div>
+        <div class="container">
+        <input id = "recipe-title" class="title-input" placeholder = "Recipe Title"> 
+        <textarea id = "recipe-body" class="body-input" placeholder = "Enter Recipe Instructions"></textarea>
+        <button id = "remove-recipe" class="button button--secondary">Delete Recipe</button>
+        </div>
+        <div class="header"></div>
+        <div class="container">
+            <h2 class="header__subtitle">Ingredients</h2>
+            <div class="actions__container">
+                <input id="ingredient" placeholder="Add Ingredient Name">
+
+        </div>
+        
+        <!-- <script src = "https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/relativeTime.min.js"></script> -->
+        <script src = "/scripts/edit-bundle.js"></script>
+    </body>
+</html>

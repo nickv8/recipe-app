@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Recipes App</title>
+        <link href="/styles/styles.css" rel="stylesheet">
+        <link href="/images/favicon.png" rel="icon">
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Recipes App</h1>
+                <h2 class="header__subtitle">Recipes you will never lose</h2>
+            </div>
+        </header>
+       <div class="actions">
+            <div class="actions__container">
+                <input id="search-text" type="text" class="input" placeholder="Filter recipes">
+                <select id="filter-by" class="dropdown">
+                    <option value="byEdited">Sort by last edited</option>
+                    <option value="byCreated">Sort by recently created</option>
+                    <option value="alphabetical">Sort alphabetically</option>
+                </select>
+            </div>
+       </div>
+       
+       <div class="container">
+        <div id="recipes"></div>
+        <button id="create-recipe" class="button">Create Recipe</button>  
+       </div>
+        <script src="/scripts/index-bundle.js"></script>
+       
+    </body>
+</html>

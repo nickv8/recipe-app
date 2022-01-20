@@ -3,8 +3,6 @@ import { getRecipes } from './recipes'
 
 const recipeId = location.hash.substring(1)
 const recipes = getRecipes()
-let ingredients = recipes.ingredients
-
 
 
 const loadIngredients = () => {
@@ -29,7 +27,6 @@ const createIngredient = (text) => {
             text,
             owned: false
         })
-        
     } else {
         return alert('Please add an ingredient')
     }

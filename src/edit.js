@@ -42,12 +42,7 @@ const newIngredient = document.querySelector('#new-ingredient')
 //add new ingredient text into input and save to ingredients array in Recipes
 newIngredient.addEventListener('submit', (e) => {
     e.preventDefault()
-    //get list of recipes
-    const recipes = getRecipes()
-
-    //find individual recipe by id, not sure if I need this anymore
-    const recipe = recipes.find((recipe) => recipe.id === recipeId)
-
+    
     //entered text will be saved to text, if no text entered alert a message
     const text = e.target.elements.text.value.trim()
     if (text.length > 0) {

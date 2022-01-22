@@ -1,4 +1,4 @@
-import { generateLastEdited, initializedEditPage } from './views'
+import { generateLastEdited, initializedEditPage, renderIndgredients } from './views'
 import { updateRecipe, removeRecipe, saveRecipes, getRecipes, createRecipe } from './recipes'
 import { createIngredient } from './ingredients'
 
@@ -47,6 +47,7 @@ newIngredient.addEventListener('submit', (e) => {
     const text = e.target.elements.text.value.trim()
     if (text.length > 0) {
         createIngredient(text)
+        renderIndgredients(recipeId)
         e.target.elements.text.value = ''
     } else {
         return alert("Please add an ingredient")

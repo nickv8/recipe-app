@@ -3,22 +3,24 @@ import { getRecipes } from './recipes'
 
 const recipeId = location.hash.substring(1)
 const recipes = getRecipes()
+const recipe = recipes.find((recipe) => recipe.id === recipeId)
 
-
+// 01/19/22 changed this to getItem('recipes.ingredients') and try recipes.ingredients.
+//origingal was just ingredients
 const loadIngredients = () => {
-    const ingredientsJSON = localStorage.getItem('ingredients')
+    const ingredientsJSON = localStorage.getItem('recipes.ingredients')
 
     try {
-        ingredients = ingredientsJSON ? JSON.parse(ingredientsJSON) : []
+        recipes.ingredients = ingredientsJSON ? JSON.parse(ingredientsJSON) : []
     } catch {
         return []
     }
 }
 
-const getIngredients = () => ingredients
+//aslo changed this to recipes.ingredients instead of ingredients
+const getIngredients = () => recipe.ingredients
 
 const createIngredient = (text) => {
-    const recipe = recipes.find((recipe) => recipe.id === recipeId)
     const id = uuidv4()
 
     if (text.length > 0) {
@@ -34,5 +36,5 @@ const createIngredient = (text) => {
 
 
 
-export { createIngredient }
+export { createIngredient, getIngredients }
 

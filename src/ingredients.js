@@ -1,5 +1,5 @@
 import uuidv4 from 'uuid'
-import { getRecipes } from './recipes'
+import { getRecipes, saveRecipes } from './recipes'
 
 const recipeId = location.hash.substring(1)
 const recipes = getRecipes()
@@ -36,13 +36,24 @@ const createIngredient = (text) => {
 
 const toggleIngredient = (ingredient) => {
 
-
     if (ingredient) {
         ingredient.owned = !ingredient.owned
     }
 }
+
+const deleteIngredient = (ingredient) => {
+    const ingredientIndex = recipe.ingredients.findIndex(function () {
+        return ingredient.id
+    })
+
+    if (ingredientIndex > -1) {
+        recipe.ingredients.splice(ingredient, 1)
+        saveRecipes()
+    }
+    
+}
  
 
 
-export { createIngredient, getIngredients, toggleIngredient }
+export { createIngredient, getIngredients, toggleIngredient, deleteIngredient }
 

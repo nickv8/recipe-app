@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { getFilters } from './filters'
-import { createIngredient, getIngredients, toggleIngredient } from './ingredients'
+import { createIngredient, getIngredients, toggleIngredient, deleteIngredient } from './ingredients'
 import { sortRecipes, getRecipes, saveRecipes } from './recipes'
 
 //Generate the DOM structure for a recipe
@@ -106,7 +106,7 @@ const generateIngredientDOM = (ingredient) => {
         buttonEl.textContent = 'delete'
         textEl.appendChild(buttonEl)
         buttonEl.addEventListener('click', () => {
-            removeIngredient(ingredient.id)
+            deleteIngredient(ingredient)
             renderIndgredients()
 
         })

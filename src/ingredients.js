@@ -34,7 +34,15 @@ const createIngredient = (text) => {
     }
 }
 
+const toggleIngredient = (ingredient) => {
 
 
-export { createIngredient, getIngredients }
+    if (ingredient) {
+        ingredient.owned = !ingredient.owned
+    }
+}
+ 
+
+
+export { createIngredient, getIngredients, toggleIngredient }
 

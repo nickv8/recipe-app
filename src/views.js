@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { getFilters } from './filters'
-import { createIngredient, getIngredients } from './ingredients'
+import { createIngredient, getIngredients, toggleIngredient } from './ingredients'
 import { sortRecipes, getRecipes, saveRecipes } from './recipes'
 
 //Generate the DOM structure for a recipe
@@ -92,7 +92,7 @@ const generateIngredientDOM = (ingredient) => {
     checkBox.checked = ingredient.owned
     containerEl.appendChild(checkBox)
     checkBox.addEventListener('change', () => {
-        toggleIngredient(ingredient.id)
+        toggleIngredient(ingredient)
         renderIndgredients()
     })
     //setup ingredient text
@@ -116,9 +116,9 @@ const generateIngredientDOM = (ingredient) => {
 }
 
 //create renderIngredients 
-const renderIndgredients = (recipeId) => {
+const renderIndgredients = () => {
     const recipes = getRecipes()
-    const recipe = recipes.find( (recipe) => recipe.id === recipeId)
+    const recipe = recipes.find((recipe) => recipe.id)
     const ingredients = recipe.ingredients
     document.querySelector('#ingredients-list').innerHTML = ''
 

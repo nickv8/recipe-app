@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { getFilters } from './filters'
-import { createIngredient, getIngredients, toggleIngredient, deleteIngredient } from './ingredients'
-import { sortRecipes, getRecipes, saveRecipes } from './recipes'
+import { toggleIngredient, deleteIngredient } from './ingredients'
+import { sortRecipes, getRecipes } from './recipes'
 
 //Generate the DOM structure for a recipe
 const generateRecipeDOM = (recipe) => {
@@ -55,7 +55,7 @@ const renderRecipes = () => {
         recipesEl.appendChild(emptyMessage)
     }
 }
-//figure out why ingredients aren't staying displayed after closing window
+
 const initializedEditPage = (recipeId) => {
 
     const titleElement = document.querySelector('#recipe-title')
@@ -81,6 +81,8 @@ const generateLastEdited = (timestamp) => `Last edited ${moment(timestamp).fromN
 
 //setup ingredient DOM
 const generateIngredientDOM = (ingredient) => {
+    const recipes = getRecipes()
+    const recipe = recipes.find((recipe) => recipe.id)
     const textEl = document.createElement('label')
     const containerEl = document.createElement('div')
     const buttonEl = document.createElement('button')
@@ -93,7 +95,7 @@ const generateIngredientDOM = (ingredient) => {
     containerEl.appendChild(checkBox)
     checkBox.addEventListener('change', () => {
         toggleIngredient(ingredient)
-        renderIndgredients()
+        
     })
     //setup ingredient text
         ingredientText.textContent = ingredient.text
@@ -106,13 +108,12 @@ const generateIngredientDOM = (ingredient) => {
         buttonEl.textContent = 'delete'
         textEl.appendChild(buttonEl)
         buttonEl.addEventListener('click', () => {
-            deleteIngredient(ingredient)
+            deleteIngredient(ingredient.id)
+            //figure out why this breaks code 
             renderIndgredients()
-
+            
         })
-        saveRecipes()
         return textEl
-
 }
 
 //create renderIngredients 
@@ -120,9 +121,7 @@ const renderIndgredients = () => {
     const recipes = getRecipes()
     const recipe = recipes.find((recipe) => recipe.id)
     const ingredients = recipe.ingredients
-    document.querySelector('#ingredients-list').innerHTML = ''
-
-    
+   document.querySelector('#ingredients-list').innerHTML = ''
 
     if (ingredients.length > 0) {
         ingredients.forEach((ingredient) => {
@@ -132,7 +131,9 @@ const renderIndgredients = () => {
         const messageEl = document.createElement('p')
         messageEl.textContent = 'No Ingredients to list'
         document.querySelector('#ingredients-list').appendChild(messageEl)
+    
     }
+    
 }
 
 //create removeIngredients in ingredients

@@ -1,5 +1,5 @@
 import { generateLastEdited, initializedEditPage, renderIndgredients } from './views'
-import { updateRecipe, removeRecipe, saveRecipes, getRecipes, createRecipe } from './recipes'
+import { updateRecipe, removeRecipe, saveRecipes } from './recipes'
 import { createIngredient } from './ingredients'
 
 const titleElement = document.querySelector('#recipe-title')

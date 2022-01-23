@@ -39,17 +39,19 @@ const toggleIngredient = (ingredient) => {
     if (ingredient) {
         ingredient.owned = !ingredient.owned
     }
+    saveRecipes()
 }
 
-const deleteIngredient = (ingredient) => {
-    const ingredientIndex = recipe.ingredients.findIndex(function () {
-        return ingredient.id
+const deleteIngredient = (id) => {
+    const ingredientIndex = recipe.ingredients.findIndex(function (ingredient) {
+        return ingredient.id === id
     })
 
     if (ingredientIndex > -1) {
-        recipe.ingredients.splice(ingredient, 1)
-        saveRecipes()
+        recipe.ingredients.splice(ingredientIndex, 1)
+        
     }
+    saveRecipes()
     
 }
  

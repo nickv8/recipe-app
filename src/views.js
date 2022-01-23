@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { getFilters } from './filters'
-import { toggleIngredient, deleteIngredient } from './ingredients'
+import { toggleIngredient, deleteIngredient, getIngredients } from './ingredients'
 import { sortRecipes, getRecipes } from './recipes'
 
 //Generate the DOM structure for a recipe
@@ -8,6 +8,7 @@ const generateRecipeDOM = (recipe) => {
     const recipeEl = document.createElement('a')
     const textEl = document.createElement('p')
     const statusEl = document.createElement('p')
+    const ownedEl = document.createElement('p')
 
 
     //Setup the recipe title text
@@ -19,11 +20,22 @@ const generateRecipeDOM = (recipe) => {
     textEl.classList.add('list-item__title')
     recipeEl.appendChild(textEl)
     
+    
+    
 
     //setup the link
     recipeEl.setAttribute('href', `/edit.html#${recipe.id}`)
     recipeEl.classList.add('list-item')
     
+    //setup ingredient owned message
+    recipeEl.appendChild(ownedEl)
+    if (recipe.ingredients.length > 0) {
+        ownedEl.textContent = 'you have all the ingredients'
+    } else {
+        ownedEl.textContent = "you don't have any ingredients"
+        
+    }
+
     //setup status message
     statusEl.textContent = generateLastEdited(recipe.updatedAt)
     statusEl.classList.add('list-item__subtitle')
@@ -55,6 +67,7 @@ const renderRecipes = () => {
         recipesEl.appendChild(emptyMessage)
     }
 }
+
 
 const initializedEditPage = (recipeId) => {
 
@@ -117,10 +130,10 @@ const generateIngredientDOM = (ingredient) => {
 }
 
 //create renderIngredients 
-const renderIndgredients = () => {
+const renderIndgredients = (recipeId) => {
     const recipes = getRecipes()
-    const recipe = recipes.find((recipe) => recipe.id)
-    const ingredients = recipe.ingredients
+    const recipe = recipes.find((recipe) => recipe.id === recipeId)
+    const ingredients = getIngredients()
    document.querySelector('#ingredients-list').innerHTML = ''
 
     if (ingredients.length > 0) {
@@ -136,9 +149,6 @@ const renderIndgredients = () => {
     
 }
 
-//create removeIngredients in ingredients
-
-//create toggleIngredients in ingredients
 
 //create ingredientFilters: searchText, owned
 

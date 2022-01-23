@@ -5,8 +5,7 @@ const recipeId = location.hash.substring(1)
 const recipes = getRecipes()
 const recipe = recipes.find((recipe) => recipe.id === recipeId)
 
-// 01/19/22 changed this to getItem('recipes.ingredients') and try recipes.ingredients.
-//origingal was just ingredients
+
 const loadIngredients = () => {
     const ingredientsJSON = localStorage.getItem('recipes.ingredients')
 
@@ -17,8 +16,9 @@ const loadIngredients = () => {
     }
 }
 
-//aslo changed this to recipes.ingredients instead of ingredients
+
 const getIngredients = () => recipe.ingredients
+
 
 const createIngredient = (text) => {
     const id = uuidv4()

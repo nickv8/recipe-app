@@ -1,7 +1,9 @@
 import moment from 'moment'
 import { getFilters } from './filters'
-import { toggleIngredient, deleteIngredient, getIngredients } from './ingredients'
+import { toggleIngredient, deleteIngredient, getIngredients, getOwnedIngredients} from './ingredients'
 import { sortRecipes, getRecipes } from './recipes'
+
+
 
 //Generate the DOM structure for a recipe
 const generateRecipeDOM = (recipe) => {
@@ -20,21 +22,16 @@ const generateRecipeDOM = (recipe) => {
     textEl.classList.add('list-item__title')
     recipeEl.appendChild(textEl)
     
-    
-    
 
     //setup the link
     recipeEl.setAttribute('href', `/edit.html#${recipe.id}`)
     recipeEl.classList.add('list-item')
     
     //setup ingredient owned message
+    ownedEl.textContent = getOwnedIngredients(recipe)
     recipeEl.appendChild(ownedEl)
-    if (recipe.ingredients.length > 0) {
-        ownedEl.textContent = 'you have all the ingredients'
-    } else {
-        ownedEl.textContent = "you don't have any ingredients"
-        
-    }
+    
+    
 
     //setup status message
     statusEl.textContent = generateLastEdited(recipe.updatedAt)
@@ -51,6 +48,7 @@ const renderRecipes = () => {
     const recipes = sortRecipes(filters.sortBy)
     const filteredRecipes = recipes.filter((recipe) => recipe.title.toLowerCase().includes(filters.searchText.toLowerCase())
     )
+    
 
     recipesEl.innerHTML = ''
 
@@ -66,6 +64,8 @@ const renderRecipes = () => {
         emptyMessage.classList.add('empty-message')
         recipesEl.appendChild(emptyMessage)
     }
+
+    
 }
 
 
@@ -91,7 +91,7 @@ const initializedEditPage = (recipeId) => {
     //Generate the last edited message with time stamp
 const generateLastEdited = (timestamp) => `Last edited ${moment(timestamp).fromNow()}`
     
-
+//figure out why same ingredients are dipslayed on every recipe
 //setup ingredient DOM
 const generateIngredientDOM = (ingredient) => {
     const recipes = getRecipes()
@@ -129,10 +129,11 @@ const generateIngredientDOM = (ingredient) => {
         return textEl
 }
 
+
+// figure out why ingredients stopped showing up for individual recipes
 //create renderIngredients 
 const renderIndgredients = (recipeId) => {
-    const recipes = getRecipes()
-    const recipe = recipes.find((recipe) => recipe.id === recipeId)
+
     const ingredients = getIngredients()
    document.querySelector('#ingredients-list').innerHTML = ''
 
@@ -146,11 +147,11 @@ const renderIndgredients = (recipeId) => {
         document.querySelector('#ingredients-list').appendChild(messageEl)
     
     }
-    
+
 }
 
 
-//create ingredientFilters: searchText, owned
+
 
     
     export { generateRecipeDOM, renderRecipes, generateLastEdited, initializedEditPage, generateIngredientDOM, renderIndgredients }

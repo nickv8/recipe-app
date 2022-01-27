@@ -6,6 +6,7 @@ const recipes = getRecipes()
 const recipe = recipes.find((recipe) => recipe.id === recipeId)
 
 
+
 const loadIngredients = () => {
     const ingredientsJSON = localStorage.getItem('recipes.ingredients')
 
@@ -24,7 +25,7 @@ const createIngredient = (text) => {
     const id = uuidv4()
 
     if (text.length > 0) {
-        recipe.ingredients.push({
+        getIngredients().push({
             id: id,
             text,
             owned: false
@@ -54,8 +55,23 @@ const deleteIngredient = (id) => {
     saveRecipes()
     
 }
+
+//figure out if this will work
+const getOwnedIngredients = (recipe) => {
+   const ingredients = recipe.ingredients
+    const ownedIngredients = []
+    const owned = ingredients.forEach((ingredient) => {
+        if (ingredient.owned === true) {
+            ownedIngredients.push(ingredient)
+        }
+        
+    })
+    return ` You have ${ownedIngredients.length} ingredients out of ${ingredients.length}`
+}
+
+
  
 
 
-export { createIngredient, getIngredients, toggleIngredient, deleteIngredient }
+export { createIngredient, getIngredients, toggleIngredient, deleteIngredient, getOwnedIngredients}
 

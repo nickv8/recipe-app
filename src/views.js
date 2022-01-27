@@ -112,17 +112,22 @@ const generateIngredientDOM = (ingredient) => {
     })
     //setup ingredient text
         ingredientText.textContent = ingredient.text
-        containerEl.appendChild(ingredientText)
+    containerEl.appendChild(ingredientText)
+    containerEl.classList.add('ingredient-list-item')
+
 
     //setup container
         textEl.appendChild(containerEl)
         
     //setup delete button
         buttonEl.textContent = 'delete'
-        textEl.appendChild(buttonEl)
+        containerEl.appendChild(buttonEl)
+        buttonEl.classList = ('secondary-button')
+    
+        
+
         buttonEl.addEventListener('click', () => {
             deleteIngredient(ingredient.id)
-            //figure out why this breaks code 
             renderIndgredients()
             
         })
@@ -145,6 +150,7 @@ const renderIndgredients = (recipeId) => {
         const messageEl = document.createElement('p')
         messageEl.textContent = 'No Ingredients to list'
         document.querySelector('#ingredients-list').appendChild(messageEl)
+        messageEl.classList=('empty-message')
     
     }
 

@@ -26,10 +26,15 @@
         </div>
         <div class="header"></div>
         <div class="container">
-            <h2 class="header__subtitle">Ingredients</h2>
+            <h2 class="header__title">Ingredients</h2>
+            <div id="ingredients-list"></div>
             <div class="actions__container">
-                <input id="ingredient" placeholder="Add Ingredient Name">
+                <form id="new-ingredient">
+                <input type="text" id="ingredient-input" placeholder="Add Ingredient Name" name="text">
+                <button id="add-ingredient">Add Ingredient</button>
+            </form>
 
+        </div>
         </div>
         
         <!-- <script src = "https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>

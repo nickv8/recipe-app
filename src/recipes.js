@@ -30,6 +30,7 @@ const createRecipe = () => {
         id: id,
         title: '',
         body: '',
+        ingredients: [],
         createdAt: timeStamp,
         editedAt: timeStamp
     })
@@ -92,6 +93,7 @@ const updateRecipe = (id, updates) => {
         return
     }
 
+
     if (typeof updates.title === 'string') {
         recipe.title = updates.title
         recipe.editedAt = moment().valueOf()
@@ -108,4 +110,4 @@ const updateRecipe = (id, updates) => {
 
 recipes = loadRecipes()
 
-export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe }
+export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe, saveRecipes }

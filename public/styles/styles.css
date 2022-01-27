@@ -124,7 +124,7 @@ a {
     background: #6E6E6E;
 }
 
-/* Note editor */
+
 
 .title-input {
     border: 1px solid #DEDFE0;
@@ -148,7 +148,7 @@ a {
     width: 100%;
 }
 
-/* Note List Item */
+
 
 .list-item {
     text-decoration: none;
@@ -180,4 +180,18 @@ a {
 .empty-message {
     text-align: center;
     margin: 3.2rem 0;
+    font-size: 2rem
+}
+
+.ingredient-list-item {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #333333;
+    background: #F7F7F7;
+    border: 1px solid #dedfe0;
+    margin: 1.6rem 0;
+    padding: 1.6rem;
+    transition: background .3s ease;
 }
